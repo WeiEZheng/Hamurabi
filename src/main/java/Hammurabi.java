@@ -63,7 +63,7 @@ public class Hammurabi {
             } else if (numberOfAcresToBuy > 0 && bushels < price * numberOfAcresToBuy) {
                 System.out.println("O Hammurabi, but you only have " + bushels + " bushels of grain!");
                 numberOfAcresToBuy = getNumber("How many acres would you like to buy?");
-            } else if (numberOfAcresToBuy >= 0 && bushels > price * numberOfAcresToBuy) {
+            } else if (bushels > price * numberOfAcresToBuy) {
                 return numberOfAcresToBuy;
                 //bushels = bushels - (valueBushelsPerAcre * numberOfAcresToBuy);
             }
