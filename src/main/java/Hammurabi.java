@@ -25,6 +25,8 @@ public class Hammurabi {
             System.out.println("How many acres would you like to buy?");
             //Buying =
             int numberOfAcresToBuy = scan1.nextInt();
+            // land =
+
 
         }
 
