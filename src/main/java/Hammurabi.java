@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Hammurabi {
     Random rand = new Random();
-    Scanner scanner = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 
@@ -23,53 +23,52 @@ public class Hammurabi {
     }
 
         public static int askHowManyAcresToBuy (int price, int bushels) {
-            Scanner scan1 = new Scanner(System.in);
+            //Scanner scan1 = new Scanner(System.in);
             System.out.println("How many acres would you like to buy?");
             //Buying: Grain is paying for the purchase.
-            int numberOfAcresToBuy = scan1.nextInt();
-            if (numberOfAcresToBuy < 0) {
-                System.out.println("You can't use a negative number.");
-            }
-            else if (numberOfAcresToBuy > 0 && bushels < price * numberOfAcresToBuy) {
-                System.out.println("You do not have enough to purchase.");
-            }
-            else if (numberOfAcresToBuy > 0 && bushels > price * numberOfAcresToBuy) {
+            int numberOfAcresToBuy = scanner.nextInt();
+            do {
+                if (numberOfAcresToBuy < 0) {
+                    System.out.println("You can't use a negative number.");
+                } else if (numberOfAcresToBuy > 0 && bushels < price * numberOfAcresToBuy) {
+                    System.out.println("You do not have enough to purchase.");
+                } else if (numberOfAcresToBuy >= 0 && bushels > price * numberOfAcresToBuy) {
+                    return numberOfAcresToBuy;
 
+                    //bushels = bushels - (valueBushelsPerAcre * numberOfAcresToBuy);
 
-            //bushels = bushels - (valueBushelsPerAcre * numberOfAcresToBuy);
-
-            }
-            return numberOfAcresToBuy;
+                }
+            } while (true);
         }
 
         public static int askHowManyAcresToSell(int acresOwned) {
         //Ask how many to sell.
             System.out.println("How many acres do you want to sell?");
-            Scanner sellAnswer = new Scanner(System.in);
-            int numberOfAcresToSell = sellAnswer.nextInt();
-            if (numberOfAcresToSell > acresOwned) {
-                System.out.println("No can do.");
-            }
-            else{
-                return numberOfAcresToSell;
-            }
+            //Scanner sellAnswer = new Scanner(System.in);
+            int numberOfAcresToSell = scanner.nextInt();
+            do {
+                if (numberOfAcresToSell > acresOwned) {
+                    System.out.println("No can do.");
+                } else {
+                    return numberOfAcresToSell;
+                }
+            } while (true);
             //You can't sell more than you have.
-                return numberOfAcresToSell;
         }
 
         public static int askHowMuchGrainToFeedPeople(int bushels) {
         int grainToFeed;
             System.out.println("How much grain do you want to feed people?");
-            Scanner grainAmount = new Scanner(System.in);
-            grainToFeed = grainAmount.nextInt();
-            if (grainToFeed > bushels) {
-                System.out.println("No can do.");
-            }
-            else{
-                return grainToFeed;
-            }
+            //Scanner grainAmount = new Scanner(System.in);
+            grainToFeed = scanner.nextInt();
+            do {
+                if (grainToFeed > bushels) {
+                    System.out.println("No can do.");
+                } else {
+                    return grainToFeed;
+                }
+            } while (true);
             //You can't sell more than you have.
-            return grainToFeed;
         }
 
         }
