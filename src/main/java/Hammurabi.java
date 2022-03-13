@@ -14,19 +14,63 @@ public class Hammurabi {
 
     void playGame() {
         int population = 100;
-        int grain = 2800; //bushels of grain in storage
+        int bushelsOfGrain = 2800; //bushels of grain in storage
         int land = 1000;
         int valueBushelsPerAcre = 19; // land value is 19 bushels/acre
-        int years = 10;
+        int year = 0;
+        int numberOfAcresToBuy = 0;
+        int numberOfAcresToSell = 0;
     }
 
         public static int askHowManyAcresToBuy (int price, int bushels) {
-            Scanner scan1 = new Scanner (System.in);
+            Scanner scan1 = new Scanner(System.in);
             System.out.println("How many acres would you like to buy?");
-            //Buying =
+            //Buying: Grain is paying for the purchase.
             int numberOfAcresToBuy = scan1.nextInt();
-            // land =
+            if (numberOfAcresToBuy < 0) {
+                System.out.println("You can't use a negative number.");
+            }
+            else if (numberOfAcresToBuy > 0 && bushels < price * numberOfAcresToBuy) {
+                System.out.println("You do not have enough to purchase.");
+            }
+            else if (numberOfAcresToBuy > 0 && bushels > price * numberOfAcresToBuy) {
 
+
+            //bushels = bushels - (valueBushelsPerAcre * numberOfAcresToBuy);
+
+            }
+            return numberOfAcresToBuy;
+        }
+
+        public static int askHowManyAcresToSell(int acresOwned) {
+        //Ask how many to sell.
+            System.out.println("How many acres do you want to sell?");
+            Scanner sellAnswer = new Scanner(System.in);
+            int numberOfAcresToSell = sellAnswer.nextInt();
+            if (numberOfAcresToSell > acresOwned) {
+                System.out.println("No can do.");
+            }
+            else{
+                return numberOfAcresToSell;
+            }
+            //You can't sell more than you have.
+                return numberOfAcresToSell;
+        }
+
+        public static int askHowMuchGrainToFeedPeople(int bushels) {
+        int grainToFeed;
+            System.out.println("How much grain do you want to feed people?");
+            Scanner grainAmount = new Scanner(System.in);
+            grainToFeed = grainAmount.nextInt();
+            if (grainToFeed > bushels) {
+                System.out.println("No can do.");
+            }
+            else{
+                return grainToFeed;
+            }
+            //You can't sell more than you have.
+            return grainToFeed;
+        }
 
         }
 
@@ -46,15 +90,15 @@ public class Hammurabi {
 
 
 
-        //Ask the questions in this order. No backing up. No changing answers.
-        int askHowManyAcresToBuy(int price, int bushels)
-        int askHowManyAcresToSell(int acresOwned)
-        int askHowMuchGrainToFeedPeople(int bushels)
-        int askHowManyAcresToPlant(int acresOwned, int population, int bushels)
-
-
-
-
-
-    }
-}
+//        //Ask the questions in this order. No backing up. No changing answers.
+//        int askHowManyAcresToBuy(int price, int bushels)
+//        int askHowManyAcresToSell(int acresOwned)
+//        int askHowMuchGrainToFeedPeople(int bushels)
+//        int askHowManyAcresToPlant(int acresOwned, int population, int bushels)
+//
+//
+//
+//
+//
+//    }
+//}
