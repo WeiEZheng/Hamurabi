@@ -51,18 +51,18 @@ public class Hammurabi {
         finalSummary();
     }
 
-    public static int askHowManyAcresToBuy(int price, int bushels) {
+    public int askHowManyAcresToBuy(int price, int bushels) {
         //Scanner scan1 = new Scanner(System.in);
         //System.out.println("How many acres would you like to buy?");
         //Buying: Grain is paying for the purchase.
-        int numberOfAcresToBuy = getNumber("How many acres would you like to buy?");
+        int numberOfAcresToBuy = getNumber("\nHow many acres would you like to buy?\n");
         do {
             if (numberOfAcresToBuy < 0) {
-                System.out.println("O Hammurabi, but that is not a positive number!");
-                numberOfAcresToBuy = getNumber("How many acres would you like to buy?");
+                System.out.println("O Hammurabi, but that is not a positive number!\n");
+                numberOfAcresToBuy = getNumber("\nHow many acres would you like to buy?");
             } else if (numberOfAcresToBuy > 0 && bushels < price * numberOfAcresToBuy) {
-                System.out.println("O Hammurabi, but you only have " + bushels + " bushels of grain!");
-                numberOfAcresToBuy = getNumber("How many acres would you like to buy?");
+                System.out.println("\nO Hammurabi, but you only have " + bushels + " bushels of grain!\nIt costs " +  valueBushelsPerAcre + " bushels per acre");
+                numberOfAcresToBuy = getNumber("\nHow many acres would you like to buy?\n");
             } else if (bushels > price * numberOfAcresToBuy) {
                 return numberOfAcresToBuy;
                 //bushels = bushels - (valueBushelsPerAcre * numberOfAcresToBuy);
@@ -70,15 +70,15 @@ public class Hammurabi {
         } while (true);
     }
 
-    public static int askHowManyAcresToSell(int acresOwned) {
+    public int askHowManyAcresToSell(int acresOwned) {
         //Ask how many to sell.
         //System.out.println("How many acres do you want to sell?");
         //Scanner sellAnswer = new Scanner(System.in);
-        int numberOfAcresToSell = getNumber("How many acres do you want to sell?");
+        int numberOfAcresToSell = getNumber("How many acres do you want to sell?\n");
         do {
             if (numberOfAcresToSell > acresOwned) {
-                System.out.println("O Hammurabi, but you only have " + acresOwned + " acres of land!");
-                numberOfAcresToSell = getNumber("How many acres do you want to sell?");
+                System.out.println("O Hammurabi, but you only have " + land + " acres of land!\n");
+                numberOfAcresToSell = getNumber("How many acres do you want to sell?\n");
             } else {
                 return numberOfAcresToSell;
             }
@@ -91,9 +91,9 @@ public class Hammurabi {
         //System.out.println("How much grain do you want to feed people?");
         //Scanner grainAmount = new Scanner(System.in);
         do {
-            grainToFeed = getNumber("How much grain do you want to feed people?");
+            grainToFeed = getNumber("\nHow many bushels of grain do you want to feed your people?\n");
             if (grainToFeed > bushels) {
-                System.out.println("O Hammurabi, but you only have " + bushels + " bushels of grain!");
+                System.out.println("O Hammurabi, but you only have " + bushels + " bushels of grain!\n");
             } else {
                 return grainToFeed;
             }
@@ -135,20 +135,20 @@ public class Hammurabi {
     }
 
     private  void printSummary() {
-        System.out.println("You are in year " + year + " of your ten year rule.");
+        System.out.println("\nYou are in year " + year + " of your ten year rule.");
         if (plagueDeaths > 0) {
-            System.out.println("A horrible plague has taken" + plagueDeaths + " lives.");
+            System.out.println("A horrible plague has taken " + plagueDeaths + " lives.");
         }
         System.out.println("In the previous year " + starved + " people starved to death.");
-        System.out.println("In the previous year " + immigrants + "people have entered our kingdom.");
+        System.out.println("In the previous year " + immigrants + " people have entered our kingdom.");
         System.out.println("The total population is now " + population);
         System.out.println("We have harvested " + harvest + " bushels of grain");
         System.out.println("The kingdom owns " + land + " acres of land");
         System.out.println("Land is now priced at " + valueBushelsPerAcre + " bushels per acre.");
         if (grainEatenByRats > 0) {
-            System.out.println("O  Hammurabi, rats have destroyed " + grainEatenByRats + " bushels! We only have " + grain + " remaining in storage.");
+            System.out.println("O  Hammurabi, rats have destroyed " + grainEatenByRats + " bushels! We only have " + grain + " remaining in storage.\n");
         } else {
-            System.out.println("The remaining bushels of grain in storage is " + grain);
+            System.out.println("The remaining bushels of grain in storage is " + grain + "\n") ;
         }
     }
 
@@ -156,33 +156,33 @@ public class Hammurabi {
         int acresToPlant=0;
         boolean validAcreage = false;
         while (!validAcreage) {
-            acresToPlant=getNumber("How many acres do you wish to plant?");
+            acresToPlant=getNumber("\nHow many acres do you wish to plant?\n");
             if (acresToPlant > acresOwned) {
-                System.out.println("O Hammurabi, but you only have " + acresOwned + " acres for which to plant!");
+                System.out.println("\nO Hammurabi, but you only have " + acresOwned + " acres for which to plant!\n");
             } else if (acresToPlant > 10 * population) {
-                System.out.println("O Hammurabi, but you only have " + acresOwned + " acres for which to increase your grain!");
+                System.out.println("\nO Hammurabi, but you only have " + acresOwned + " acres for which to increase your grain!\n");
             } else if (acresToPlant > 2 * bushels) {
-                System.out.println("O  Hammurabi, but you only have " + bushels + " bushels for which to plant!");
-                System.out.println(acresToPlant + " acres you wish to plant? We don't have the resources");
+                System.out.println("\n O  Hammurabi, but you only have " + bushels + " bushels for which to plant!\n");
+                System.out.println("We don't have the resources to plant " + acresToPlant + "acres");
             } else validAcreage = true;
         }
         return acresToPlant;
     }
 
     public void finalSummary() {
-        if (starved > (45 *  population) / 100) {
-            System.out.println( "Hammurabi, \n" + "you have starved " + starved + " of your subjects in your final year.\n" + " Your time is over!");
+        if (starved >= (45 *  population) / 100) {
+            System.out.println( "Hammurabi, you have starved " + starved + " of your subjects in your final year.\n" + "Your time is over!");
         }
-        if ( population * 20 < land) {
+        if (population * 20 < land) {
             land = population * 20;
         }
         if (land < 700) {
-            System.out.println("Ah hammurabi!!\n" + "you have put in much effort\n" +"but have only done an OKAY job..");
-        } else if (land < 900) {
-            System.out.println("Ah hammurabi!!\n" + "you have put in much effort\n" + "And have done a MAGNIFICENT JOB!!");
+            System.out.println("\nAh hammurabi!!\n" + "You have put in much effort but have only done an okay job..");
+        } else if (land > 700 && land < 900) {
+            System.out.println("\nAh hammurabi!!\n" + "You have put in much effort and have done a magnificent job!!");
         }
         else {
-            System.out.println( "Congratulations!! You have done well by your people\n and will be praised for many years to come!!!");
+            System.out.println( "\nCongratulations!! You have done well by your people, " + population + " have survived under your rule.\n" + "You shall be praised for many years to come!!!");
         }
     }
 
