@@ -37,16 +37,18 @@ public class Hammurabi {
             feed = askHowMuchGrainToFeedPeople(grain);
             acresPlanted = askHowManyAcresToPlant(land, population, grain);
             plagueDeaths = plagueDeaths(population);
+            population -= plagueDeaths;
             starved = starvationDeaths(population, feed);
-            immigrants = immigrants(population, land, grain);
-            harvest = harvest(acresPlanted);
-            grainEatenByRats = grainEatenByRats(grain);
-            valueBushelsPerAcre = newCostOfLand();
-            population = population - plagueDeaths - starved + immigrants;
-            grain = grain - grainEatenByRats - feed + harvest;
-            year++;
+            if (starved==0) {immigrants = immigrants(population, land, grain);}
             if (uprising(population,starved))
                 break;
+            harvest = harvest(acresPlanted);
+            grain -= feed;
+            grainEatenByRats = grainEatenByRats(grain);
+            valueBushelsPerAcre = newCostOfLand();
+            population = population - starved + immigrants;
+            grain = grain - grainEatenByRats + harvest;
+            year++;
         }
         finalSummary();
     }
