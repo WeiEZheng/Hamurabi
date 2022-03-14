@@ -16,7 +16,6 @@ public class Hammurabi {
     private int starved;
     private int harvest;
     private int grainEatenByRats;
-    private int starvedTotal;
 
     public static void main(String[] args) {
         new Hammurabi().playGame();
@@ -47,6 +46,8 @@ public class Hammurabi {
             population = population - plagueDeaths - starved + immigrants;
             grain = grain - grainEatenByRats - feed + harvest;
             year++;
+            if (uprising(population,starved))
+                break;
         }
         finalSummary();
     }
@@ -135,7 +136,7 @@ public class Hammurabi {
     }
 
     private  void printSummary() {
-        System.out.println("You are in year" + year + " of your ten year rule.");
+        System.out.println("You are in year " + year + " of your ten year rule.");
         if (plagueDeaths > 0) {
             System.out.println("A horrible plague has taken" + plagueDeaths + " lives.");
         }
@@ -146,9 +147,9 @@ public class Hammurabi {
         System.out.println("The kingdom owns " + land + " acres of land");
         System.out.println("Land is now priced at " + valueBushelsPerAcre + "bushels per acre.");
         if (grainEatenByRats > 0) {
-            System.out.println(" O  Hammurabi, rats have destroyed " + grainEatenByRats + " bushels! We only have " + grain + " remaining in storage.");
+            System.out.println("O  Hammurabi, rats have destroyed " + grainEatenByRats + " bushels! We only have " + grain + " remaining in storage.");
         } else {
-            System.out.println(" The remaining bushels of grain in storage is " + grain);
+            System.out.println("The remaining bushels of grain in storage is " + grain);
         }
     }
 
@@ -161,7 +162,7 @@ public class Hammurabi {
                 System.out.println("O Hammurabi, but you only have " + acresOwned + " acres for which to plant!");
             } else if (acresToPlant > 10 * population) {
                 System.out.println("O Hammurabi, but you only have " + acresOwned + " acres for which to increase your grain!");
-            } else if (acresToPlant < 2 * bushels) {
+            } else if (acresToPlant > 2 * bushels) {
                 System.out.println("O  Hammurabi, but you only have " + bushels + " bushels for which to plant!");
                 System.out.println(acresToPlant + " acres you wish to plant? We don't have the resources");
             } else validAcreage = true;
@@ -171,21 +172,34 @@ public class Hammurabi {
 
     public void finalSummary() {
         if (starved > (45 *  population) / 100) {
-            System.out.println( "Hammurabi, \n" + "you have starved " + starvedTotal + " of your subjects in your final year./n" + " Your time is over!");
+            System.out.println( "Hammurabi, \n" + "you have starved " + starved + " of your subjects in your final year.\n" + " Your time is over!");
         }
         if ( population * 20 < land) {
             land = population * 20;
         }
         if (land < 700) {
-            System.out.println("Ah hammurabi!!\n" + "you have put in much effort\n" +" but have only done an OKAY job..");
+            System.out.println("Ah hammurabi!!\n" + "you have put in much effort\n" +"but have only done an OKAY job..");
         } else if (land < 900) {
-            System.out.println("Ah hammurabi!!\n" + "you have put in much effort\n" + " And have done a MAGNIFICENT JOB!!");
+            System.out.println("Ah hammurabi!!\n" + "you have put in much effort\n" + "And have done a MAGNIFICENT JOB!!");
         }
         else {
             System.out.println( "Congratulations!! You have done well by your people\n and will be praised for many years to come!!!");
         }
     }
-}
 
+    public static int immigrants(int population,int acresOwned,int grainInStorage){
+        return (20 * acresOwned + grainInStorage)/(100 * population) +1;
+
+    }
+
+    public static int starvationDeaths(int population, int bushelsFedtoPeople){
+        if(population *20 <= bushelsFedtoPeople) return 0;
+        else return population - (bushelsFedtoPeople/20);
+    }
+
+    public static boolean uprising(int population, int howManyPeopleSarved){
+        return (((double)howManyPeopleSarved/population) >= .45);
+    }
+}
 
 

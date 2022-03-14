@@ -43,28 +43,28 @@ public class HammurabiTest {
         assertEquals("In a plague, " + deaths + "% of your people die, not 50%.",
                      50, deaths);
     }
-//
-//    @Test
-//    public final void testStarvationDeaths() {
-//        int deaths = ham.starvationDeaths(100, 1639);
-//        assertEquals("Wrong number of starvations deaths.", 19, deaths);
-//        deaths = ham.starvationDeaths(100, 2500);
-//        if (deaths < 0) {
-//            fail("You starved a negative number of people!");
-//        }
-//    }
-//
-//    @Test
-//    public final void testUprising() {
-//        assertTrue("Should have had an uprising!", ham.uprising(1000, 451));
-//        assertFalse("Should not have had an uprising!", ham.uprising(1000, 449));
-//    }
-//
-//    @Test
-//    public final void testImmigrants() {
-//        int imm = ham.immigrants(10, 1200, 500);
-//        assertEquals("Wrong number of immigrants.", 25, imm);
-//    }
+
+    @Test
+    public final void testStarvationDeaths() {
+        int deaths = ham.starvationDeaths(100, 1639);
+        assertEquals("Wrong number of starvations deaths.", 19, deaths);
+        deaths = ham.starvationDeaths(100, 2500);
+        if (deaths < 0) {
+            fail("You starved a negative number of people!");
+        }
+    }
+
+    @Test
+    public final void testUprising() {
+        assertTrue("Should have had an uprising!", ham.uprising(1000, 451));
+        assertFalse("Should not have had an uprising!", ham.uprising(1000, 449));
+    }
+
+    @Test
+    public final void testImmigrants() {
+        int imm = ham.immigrants(10, 1200, 500);
+        assertEquals("Wrong number of immigrants.", 25, imm);
+    }
 
     @Test
     public final void testHarvest() {
@@ -121,5 +121,41 @@ public class HammurabiTest {
             assertTrue("You never have a land cost of " + j + " bushels per acre.", cost[j] > 0);
         }
     }
+
+    @Test
+    public void immigrantsTest() {
+        //given
+        int acres = 200;
+        int amountOfGrain = 500;
+        int population = 200;
+        int expected =1;
+        //when
+        int result = Hammurabi.immigrants(population,acres,amountOfGrain );
+        //then
+        Assert.assertEquals(expected,result);
+    }
+
+
+    @Test
+    public final void testImmigrants1() {
+        int imm = Hammurabi.immigrants(10, 1200, 500);
+        Assert.assertEquals( 25, imm);
+    }
+
+    @Test
+    public final void testStarvationDeaths1() {
+        int deaths = Hammurabi.starvationDeaths(100, 1639);
+        Assert.assertEquals(19, deaths);
+        deaths = Hammurabi.starvationDeaths(100, 2500);
+        if (deaths < 0) {
+            Assert.fail("You starved a negative number of people!");
+        }
+    }
+    @Test
+    public void testUprising1() {
+        Assert.assertTrue(Hammurabi.uprising(1000, 451));
+        Assert. assertFalse(Hammurabi.uprising(1000, 449));
+    }
+
 }
 
