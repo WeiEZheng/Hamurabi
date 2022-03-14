@@ -38,7 +38,7 @@ public class Hammurabi {
             acresPlanted = askHowManyAcresToPlant(land, population, grain);
             plagueDeaths = plagueDeaths(population);
             starved = starvationDeaths(population, feed);
-            immigrants = immigrants(population, land, grain);
+            if (starved==0) {immigrants = immigrants(population, land, grain);}
             harvest = harvest(acresPlanted);
             grainEatenByRats = grainEatenByRats(grain);
             valueBushelsPerAcre = newCostOfLand();
@@ -144,7 +144,7 @@ public class Hammurabi {
         System.out.println("The total population is now " + population);
         System.out.println("We have harvested " + harvest + " bushels of grain");
         System.out.println("The kingdom owns " + land + " acres of land");
-        System.out.println("Land is now priced at " + valueBushelsPerAcre + "bushels per acre.");
+        System.out.println("Land is now priced at " + valueBushelsPerAcre + " bushels per acre.");
         if (grainEatenByRats > 0) {
             System.out.println("O  Hammurabi, rats have destroyed " + grainEatenByRats + " bushels! We only have " + grain + " remaining in storage.");
         } else {
