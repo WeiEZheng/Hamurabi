@@ -38,7 +38,6 @@ public class Hammurabi {
             acresPlanted = askHowManyAcresToPlant(land, population, grain);
             plagueDeaths = plagueDeaths(population);
             starved = starvationDeaths(population, feed);
-            starvedTotal+=starved;
             immigrants = immigrants(population, land, grain);
             harvest = harvest(acresPlanted);
             grainEatenByRats = grainEatenByRats(grain);
