@@ -174,6 +174,7 @@ public class Hammurabi {
     public void finalSummary() {
         if (starved >= (45 *  population) / 100) {
             System.out.println( "Hammurabi, you have starved " + starved + " of your subjects in your final year.\n" + "Your time is over!");
+            return;
         }
         if (population * 20 < land) {
             land = population * 20;
