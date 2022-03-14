@@ -38,12 +38,13 @@ public class Hammurabi {
             acresPlanted = askHowManyAcresToPlant(land, population, grain);
             plagueDeaths = plagueDeaths(population);
             population -= plagueDeaths;
+            grain -= feed;
             starved = starvationDeaths(population, feed);
             if (starved==0) {immigrants = immigrants(population, land, grain);}
             if (uprising(population,starved))
                 break;
             harvest = harvest(acresPlanted);
-            grain -= feed;
+
             grainEatenByRats = grainEatenByRats(grain);
             valueBushelsPerAcre = newCostOfLand();
             population = population - starved + immigrants;
