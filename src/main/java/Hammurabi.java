@@ -35,16 +35,16 @@ public class Hammurabi {
                 grain =grain +(sell*valueBushelsPerAcre);
             }
             feed = askHowMuchGrainToFeedPeople(grain);
+            grain -= feed;
             acresPlanted = askHowManyAcresToPlant(land, population, grain);
+            grain -=acresPlanted;
             plagueDeaths = plagueDeaths(population);
             population -= plagueDeaths;
-            grain -= feed;
             starved = starvationDeaths(population, feed);
             if (starved==0) {immigrants = immigrants(population, land, grain);}
             if (uprising(population,starved))
                 break;
             harvest = harvest(acresPlanted);
-
             grainEatenByRats = grainEatenByRats(grain);
             valueBushelsPerAcre = newCostOfLand();
             population = population - starved + immigrants;
