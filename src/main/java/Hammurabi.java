@@ -45,10 +45,11 @@ public class Hammurabi {
             if (uprising(population,starved))
                 break;
             harvest = harvest(acresPlanted);
+            grain += harvest;
             grainEatenByRats = grainEatenByRats(grain);
             valueBushelsPerAcre = newCostOfLand();
             population = population - starved + immigrants;
-            grain = grain - grainEatenByRats + harvest;
+            grain = grain - grainEatenByRats;
             year++;
         }
         finalSummary();
