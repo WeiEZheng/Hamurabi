@@ -69,7 +69,7 @@ public class Hammurabi {
             } else if (bushels > price * numberOfAcresToBuy) {
                 return numberOfAcresToBuy;
                 //bushels = bushels - (valueBushelsPerAcre * numberOfAcresToBuy);
-            }
+            } else if (bushels==0) return 0;
         } while (true);
     }
 
@@ -163,7 +163,7 @@ public class Hammurabi {
             if (acresToPlant > acresOwned) {
                 System.out.println("\nO Hammurabi, but you only have " + acresOwned + " acres for which to plant!\n");
             } else if (acresToPlant > 10 * population) {
-                System.out.println("\nO Hammurabi, but you only have " + acresOwned + " acres for which to increase your grain!\n");
+                System.out.println("\nO Hammurabi, but you only have " + population + " people to work your fields!\n");
             } else if (acresToPlant > 2 * bushels) {
                 System.out.println("\n O  Hammurabi, but you only have " + bushels + " bushels for which to plant!\n");
                 System.out.println("We don't have the resources to plant " + acresToPlant + "acres");
